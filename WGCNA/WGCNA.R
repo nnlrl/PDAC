@@ -157,7 +157,7 @@ dev.off()
 
 powers = c(c(1:10), seq(from = 12, to=20, by=2))
 sft = pickSoftThreshold(datExpr, powerVector = powers, verbose = 5)
-sizeGrWindow(9, 5)# 设定窗口大小
+sizeGrWindow(9, 5)
 par(mfrow = c(1,2));
 cex1 = 0.9;
 
