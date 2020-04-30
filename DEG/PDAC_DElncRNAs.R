@@ -24,13 +24,13 @@ metaMatrix.RNA <-gdcFilterSampleType(metaMatrix.RNA)
 ####### Merge RNAseq data #######
 rnaCounts <-gdcRNAMerge(metadata  = metaMatrix.RNA, path = rnadir, data.type ='RNAseq')
 ####### Normalization of RNAseq data #######
-rnaExpr <-gdcVoomNormalization(counts = rnaCounts, filter =FALSE)#filter =TRUE则去除logcpm < 1样本占比大于一半的基因
+rnaExpr <-gdcVoomNormalization(counts = rnaCounts, filter =FALSE)
 
 
 ####### clinical data
 metaMatrix.RNA$sample_type <- factor(metaMatrix.RNA$sample_type)
 count <- as.data.frame(t(rnaCounts))
-metadata <- metaMatrix.RNA[,-c(1,2,3,5,6,8,9,10,11,12,13,14,15)]#保留分组信息
+metadata <- metaMatrix.RNA[,-c(1,2,3,5,6,8,9,10,11,12,13,14,15)]
 
 
 ####### merge
@@ -43,7 +43,7 @@ count <- count %>%
 ####### SMOTE
 set.seed(20)
 smote_train <- SMOTE(sample_type ~ ., data  = count)
-smote_train <- na.omit(smote_train)#删除NA行
+smote_train <- na.omit(smote_train)
 table(smote_train$sample_type)
 
 metadata_smote <- smote_train[,ncol(smote_train)]
